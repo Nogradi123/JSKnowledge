@@ -2048,25 +2048,55 @@ const movies = [
 
 // console.log(scoresAverage(movies));
 
-function dramaMoviesScore(moviesArray) {
-    const getDramaMovies = moviesArray.filter((genre) => {
-      return genre.genre.indexOf('Drama') >= 0;
-    }) 
+// function dramaMoviesScore(moviesArray) {
+//     const getDramaMovies = moviesArray.filter((genre) => {
+//       return genre.genre.indexOf('Drama') >= 0;
+//     }) 
     
-    const { totalScores, validMovieCount } = getDramaMovies.reduce((sum, currentMovie) => {
-      if(!currentMovie.hasOwnProperty('score')) {
-        sum.totalScores += currentMovie.score;
-      }
-      if(currentMovie.hasOwnProperty('score')) {
-        sum.totalScores += currentMovie.score;
-        sum.validMovieCount++;
-      }
-      return sum
-    }, {totalScores: 0, validMovieCount: 0});
+//     const { totalScores, validMovieCount } = getDramaMovies.reduce((sum, currentMovie) => {
+//       if(!currentMovie.hasOwnProperty('score')) {
+//         sum.totalScores += currentMovie.score;
+//       }
+//       if(currentMovie.hasOwnProperty('score')) {
+//         sum.totalScores += currentMovie.score;
+//         sum.validMovieCount++;
+//       }
+//       return sum
+//     }, {totalScores: 0, validMovieCount: 0});
 
-    const avgScore = validMovieCount === 0 ? 0 : totalScores / validMovieCount;
-    return Math.round(avgScore * 100) / 100;
+//     const avgScore = validMovieCount === 0 ? 0 : totalScores / validMovieCount;
+//     return Math.round(avgScore * 100) / 100;
+// };
+
+// console.log(dramaMoviesScore(movies))
+
+// function orderByYear(moviesArray) {
+//   const newArray = moviesArray.map(function(movies) {
+//     return movies;
+//   });
+  
+//   return newArray.sort(function(a, b) {
+//     if(a.year < b.year) return -1;
+//     if(a.year > b.year) return 1;
+    
+//     return a.title.localeCompare(b.title);
+//   });
+// }
+
+// console.log(orderByYear(movies));
+
+function orderAlphabetically(moviesArray) {
+  const newArray = moviesArray.map((title) => title.title).filter(title => typeof title === 'string');
+
+  if(newArray.length <= 20) {
+    return newArray;
+  } else if(newArray.length >= 20){
+    return newArray.slice(0,20)
+  };
+
+  newArray.sort((a, b) => a - b);
+
+  return newArray
 };
 
-console.log(dramaMoviesScore(movies))
-
+console.log(orderAlphabetically(movies));
