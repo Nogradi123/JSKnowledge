@@ -145,3 +145,21 @@ for(let i = 0; i <= 20; i++) {
         console.log(`${i} is odd`)
     }
 }
+
+// FOR...IN LOOP 
+
+const object = {
+    a: 1,
+    b: 2,
+    c: 3
+};
+
+let sum = 0;
+for(let key in object) {
+    sum += object[key]
+}
+console.log(sum)
+// Expected output 
+// 1
+// 2
+// 3
